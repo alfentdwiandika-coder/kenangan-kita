@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+.env
+.env.*
+
+# Storage — user uploads & rendered videos (jangan di-commit)
+storage/uploads/*
+storage/outputs/*
+# Kecuali .gitkeep agar folder tetap ada
+!storage/uploads/.gitkeep
+!storage/outputs/.gitkeep
+
+# Database (di-generate otomatis saat startup)
+storage/app.db
+
+# Video test sementara
+*.mp4
+# Kecuali yang ada di presets (kalau ada musik)
+!presets/*.mp3
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp

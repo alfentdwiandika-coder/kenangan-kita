@@ -1,0 +1,63 @@
+{
+  "id": "my-kisah",
+  "name": "My Kisah",
+  "description": "Scrapbook romantis vintage — Kodak Gold warm, letterbox sinematik, grain film, transisi white flash, teks brush lirik multi-warna. Cocok untuk 6 foto (durasi ~25 detik).",
+  "size": "960x720",
+  "duration_per_photo": 4.3,
+  "fade": 0.7,
+  "zoom": 1.05,
+  "look": "my-kisah",
+  "transition": "fadewhite",
+  "overlay": null,
+  "music": null,
+  "lyrics": [
+    {
+      "text": "Dan Kau Hadirr...",
+      "start": 4.2,
+      "end": 7.8,
+      "color": "0xCC4400",
+      "fontsize": 88,
+      "x": "w*0.08",
+      "y": "(h-text_h)/2+20",
+      "shadow": "0x1A0000@0.55",
+      "fade_in": 0.6,
+      "fade_out": 0.5
+    },
+    {
+      "text": "My Kisah",
+      "start": 16.5,
+      "end": 19.0,
+      "color": "0xF5E070",
+      "fontsize": 104,
+      "x": "(w-text_w)/2",
+      "y": "(h-text_h)/2-40",
+      "shadow": "0x000000@0.7",
+      "fade_in": 0.5,
+      "fade_out": 0.6
+    },
+    {
+      "text": "Cinta Ku",
+      "start": 17.8,
+      "end": 21.0,
+      "color": "0x1A1A1A",
+      "fontsize": 96,
+      "x": "w*0.45",
+      "y": "h*0.42",
+      "shadow": "0x000000@0.35",
+      "fade_in": 0.5,
+      "fade_out": 0.5
+    },
+    {
+      "text": "Setinggi Angkasa",
+      "start": 19.5,
+      "end": 23.8,
+      "color": "0x8B1A1A",
+      "fontsize": 78,
+      "x": "w*0.05",
+      "y": "h*0.62",
+      "shadow": "0x000000@0.45",
+      "fade_in": 0.6,
+      "fade_out": 0.7
+    }
+  ]
+}

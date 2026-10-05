@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kenangan Kita</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,480;9..144,600&family=Nunito:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/styles.css" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♥</text></svg>" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <p class="brand">Kenangan Kita</p>
+        <p class="brand-note">Satu video, dari enam momen kalian</p>
+      </header>
+
+      <ol class="steps" aria-label="Langkah">
+        <li class="step is-active" data-step="photos">Foto</li>
+        <li class="step" data-step="templates">Template</li>
+        <li class="step" data-step="result">Video</li>
+      </ol>
+
+      <main>
+        <section class="panel is-visible" id="panel-photos" aria-labelledby="title-photos">
+          <h1 id="title-photos">Pilih 6 foto kenangan</h1>
+          <p class="lead">Isi keenam kotak. Tombol lanjut baru bisa ditekan setelah semua terisi.</p>
+          <div class="photo-grid" id="photoGrid"></div>
+        </section>
+
+        <section class="panel" id="panel-templates" aria-labelledby="title-templates" hidden>
+          <h1 id="title-templates">Pilih satu suasana</h1>
+          <p class="lead">Sentuh kartu yang paling terasa seperti kalian, lalu lanjut.</p>
+          <div class="template-grid" id="templateGrid"></div>
+        </section>
+
+        <section class="panel" id="panel-result" aria-labelledby="title-result" hidden>
+          <div id="loadingState" class="result-state">
+            <div class="heart-loader" aria-hidden="true">
+              <span></span>
+            </div>
+            <h1 id="title-result">Sedang merangkai kenangan</h1>
+            <p class="lead">Foto dan template sedang disatukan menjadi video. Tinggal menunggu sebentar.</p>
+          </div>
+
+          <div id="readyState" class="result-state" hidden>
+            <h1>Video kalian siap</h1>
+            <p class="lead">Simpan, lalu tonton bareng.</p>
+            <video id="resultVideo" controls playsinline></video>
+          </div>
+
+          <div id="errorState" class="result-state" hidden>
+            <h1>Belum berhasil</h1>
+            <p class="lead" id="errorText">Ada yang menghambat. Coba buat lagi, ya.</p>
+          </div>
+        </section>
+      </main>
+
+      <p class="toast" id="toast" hidden></p>
+
+      <footer class="cta">
+        <button class="btn ghost" id="backBtn" type="button" hidden>Kembali</button>
+        <button class="btn primary" id="primaryBtn" type="button" disabled>Lanjut</button>
+      </footer>
+    </div>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>

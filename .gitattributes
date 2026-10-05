@@ -1,0 +1,22 @@
+# Normalize line endings
+* text=auto
+
+# Force LF untuk file kode (konsisten di semua OS)
+*.py    text eol=lf
+*.js    text eol=lf
+*.css   text eol=lf
+*.html  text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+
+# Windows batch — CRLF
+*.bat   text eol=crlf
+
+# Binary — jangan disentuh
+*.ttf   binary
+*.mp3   binary
+*.mp4   binary
+*.png   binary
+*.jpg   binary
+*.db    binary
