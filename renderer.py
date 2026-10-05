@@ -1,8 +1,12 @@
+import logging
+import re
 import shutil
 import subprocess
 from pathlib import Path
 
 from presets_lib import load_preset
+
+logger = logging.getLogger("kenangan-kita")
 
 
 class RenderError(Exception):
@@ -145,8 +149,23 @@ def render_slideshow(photo_paths: list[str], output_path: Path, preset_id: str) 
             default_y_offset = -120
 
         for i, lyric in enumerate(preset["lyrics"]):
-            # Escaping sederhana untuk FFmpeg drawtext
-            text = lyric["text"].replace("'", "\\'").replace(":", "\\:")
+            # [FIX #3] Sanitasi teks lirik untuk cegah FFmpeg command injection.
+            # Buang semua karakter selain alfanumerik, spasi, tanda baca umum.
+            raw_text = str(lyric.get("text", ""))
+            # Whitelist: huruf (termasuk Unicode/aksara), angka, spasi, tanda baca aman
+            sanitized = re.sub(r"[^\w\s.,!?'\-:♡♥]", "", raw_text, flags=re.UNICODE)
+            sanitized = sanitized[:120]  # batasi panjang teks maksimum 120 karakter
+            if not sanitized.strip():
+                continue  # skip lyric kosong setelah sanitasi
+
+            # Escape untuk FFmpeg drawtext: backslash, colon, single-quote, percent
+            text = (
+                sanitized
+                .replace("\\", "\\\\")   # backslash dulu
+                .replace("'",  "\u2019") # ganti single quote dengan right single quotation mark (aman)
+                .replace(":",  "\\:")
+                .replace("%",  "\\%")
+            )
             start = lyric["start"]
             end = lyric["end"]
             # Animasi fade in/out untuk teks (durasi fade 0.5s)

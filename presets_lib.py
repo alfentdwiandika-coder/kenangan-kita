@@ -1,7 +1,14 @@
 import json
+import logging
+import re
 from pathlib import Path
 
 PRESET_DIR = Path(__file__).resolve().parent / "presets"
+
+logger = logging.getLogger("kenangan-kita")
+
+# [FIX #4] Whitelist karakter yang boleh ada di preset ID
+_PRESET_ID_RE = re.compile(r"^[a-z0-9\-]{1,64}$")
 
 LOOKS = {
     "warm-rose": (
@@ -56,7 +63,19 @@ def _parse_size(size: str) -> tuple[int, int]:
 
 
 def load_preset(preset_id: str) -> dict:
+    # [FIX #4] Validasi preset_id — cegah path traversal seperti "../../../etc/passwd"
+    if not _PRESET_ID_RE.match(preset_id):
+        raise ValueError(f"Preset ID tidak valid: '{preset_id}'.")
+
     path = PRESET_DIR / f"{preset_id}.json"
+
+    # Double-check: pastikan path masih di dalam PRESET_DIR setelah resolve
+    try:
+        path.resolve().relative_to(PRESET_DIR.resolve())
+    except ValueError:
+        logger.warning("Path traversal attempt pada preset_id: %s", preset_id)
+        raise FileNotFoundError(f"Preset '{preset_id}' tidak ditemukan.")
+
     if not path.exists():
         raise FileNotFoundError(f"Preset '{preset_id}' tidak ditemukan di folder presets.")
     with path.open(encoding="utf-8") as handle:
